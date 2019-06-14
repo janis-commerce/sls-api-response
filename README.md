@@ -1,7 +1,7 @@
 # Serverless API Response
 
-[![Build Status](https://travis-ci.org/janis-commerce/api-schema.svg?branch=master)](https://travis-ci.org/janis-commerce/api-schema)
-[![Coverage Status](https://coveralls.io/repos/github/janis-commerce/api-schema/badge.svg?branch=master)](https://coveralls.io/github/janis-commerce/api-schema?branch=master)
+[![Build Status](https://travis-ci.org/janis-commerce/sls-api-response.svg?branch=master)](https://travis-ci.org/janis-commerce/sls-api-response)
+[![Coverage Status](https://coveralls.io/repos/github/janis-commerce/sls-api-response/badge.svg?branch=master)](https://coveralls.io/github/janis-commerce/sls-api-response?branch=master)
 
 A package to handle Serverless API Responses
 
