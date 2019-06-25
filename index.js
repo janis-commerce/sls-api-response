@@ -1,6 +1,6 @@
 'use strict';
 
-const ApiResponse = require('./src/api-response');
+const ApiResponse = require('./lib/api-response');
 
 module.exports = {
 	ApiResponse
