@@ -36,3 +36,7 @@ ApiResponse.send({
 	}
 });
 ```
+
+## Configuration
+
+In order to work properly, you have to set valid response templates in each function configuration. An example can be found [here](https://github.com/janis-commerce/sls-api-rest#function-minimal-configuration)
