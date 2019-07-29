@@ -25,6 +25,43 @@ ApiResponse.send({
 	}
 });
 
+// Successful response with response headers
+ApiResponse.send({
+	body: {
+		foo: 'bar'
+	},
+	headers: {
+		'x-foo': 'bar'
+	}
+});
+
+// Successful response with simple cookie
+ApiResponse.send({
+	body: {
+		foo: 'bar'
+	},
+	cookies: {
+		'my-cookie': 'bar'
+	}
+});
+
+// Successful response with complex cookie
+ApiResponse.send({
+	body: {
+		foo: 'bar'
+	},
+	cookies: {
+		'my-cookie': {
+			value: 'bar',
+			httpOnly: true,
+			secure: true,
+			path: '/',
+			expires: new Date(), // Or (new Date()).toUTCString()
+			domain: '.example.com'
+		}
+	}
+});
+
 // Error response
 ApiResponse.send({
 	statusCode: 400,
