@@ -67,8 +67,8 @@ ApiResponse.send({
 	statusCode: 400,
 	body: {
 		message: 'Something is bad',
-		detail: {
-			what: 'your request'
+		messageVariables: {
+			foo: 'bar'
 		}
 	}
 });

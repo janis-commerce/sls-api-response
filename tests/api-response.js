@@ -95,6 +95,52 @@ describe('API Response', () => {
 			assert.throws(() => ApiResponse.send(originalObject));
 		});
 
+		it('Should parse the messageVariables when present to ensure that only scalar values are sent', () => {
+
+			const originalObject = {
+				statusCode: 500,
+				body: {
+					message: 'common.error.someMessage',
+					messageVariables: {
+						string: 'string',
+						number: 100,
+						boolean1: true,
+						boolean2: false,
+						array: ['foo', 100, {}],
+						object: {
+							foo: 'bar',
+							baz: 100
+						},
+						null: null,
+						undefined
+					}
+				}
+			};
+
+			const expectedError = {
+				...originalObject,
+				statusCodeForPatternMatching: '[500]',
+				body: {
+					message: 'common.error.someMessage',
+					messageVariables: {
+						string: 'string',
+						number: 100,
+						boolean1: true,
+						boolean2: false,
+						array: 'foo,100,[object Object]',
+						object: '{ foo: \'bar\', baz: 100 }',
+						null: '',
+						undefined: ''
+					}
+				}
+			};
+
+			assert.throws(() => ApiResponse.send({ ...originalObject }), err => {
+				assert.deepStrictEqual(JSON.parse(err.message), expectedError);
+				return true;
+			});
+		});
+
 		it('Should pass the response headers', () => {
 
 			const originalObject = {
