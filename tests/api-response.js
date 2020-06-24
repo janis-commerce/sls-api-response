@@ -122,7 +122,7 @@ describe('API Response', () => {
 				statusCodeForPatternMatching: '[500]',
 				body: {
 					message: 'common.error.someMessage',
-					messageVariables: {
+					messageVariables: JSON.stringify({
 						string: 'string',
 						number: 100,
 						boolean1: true,
@@ -131,7 +131,7 @@ describe('API Response', () => {
 						object: '{ foo: \'bar\', baz: 100 }',
 						null: '',
 						undefined: ''
-					}
+					})
 				}
 			};
 
