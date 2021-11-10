@@ -62,16 +62,21 @@ ApiResponse.send({
 	}
 });
 
-// Error response
-ApiResponse.send({
-	statusCode: 400,
-	body: {
-		message: 'Something is bad',
-		messageVariables: {
-			foo: 'bar'
-		}
-	}
-});
+// Error response (default statusCode is 500)
+ApiResponse.sendError(new Error('We have a problem'));
+// Response body: { "message": "We have a problem" }
+
+// Error response with custom status code
+const error = new Error('You have a problem');
+error.statusCode = 400;
+ApiResponse.sendError(error);
+// Response body: { "message": "You have a problem" }
+
+// Error response with custom response body
+const error = new Error('You have a problem');
+error.body = { customErrorMessage: "Bad request body" }
+ApiResponse.sendError(error);
+// Response body: { "customErrorMessage": "Bad request body" }
 ```
 
 ## Configuration
