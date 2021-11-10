@@ -4,8 +4,8 @@
   "description": "A package to handle Serverless API Responses",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --exit -R nyan --recursive tests/ --require tests/resources/bootstrap",
-    "test-ci": "nyc --reporter=html --reporter=text mocha --recursive tests/ --require tests/resources/bootstrap",
+    "test": "export TEST_ENV=true; mocha --exit -R nyan --recursive tests/ --require tests/resources/bootstrap",
+    "test-ci": "nyc --reporter=lcov --reporter=text-summary mocha --exit --recursive tests/ --require tests/resources/bootstrap",
     "watch-test": "export TEST_ENV=true; mocha --exit -R nyan -w --recursive tests/ --require tests/resources/bootstrap",
     "coverage": "nyc npm test",
     "lint": "eslint lib/ tests/"
