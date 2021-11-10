@@ -2,9 +2,7 @@
 
 const assert = require('assert');
 
-const { ApiResponse } = require('../');
-
-/* eslint-disable prefer-arrow-callback */
+const { ApiResponse } = require('../lib');
 
 describe('API Response', () => {
 
@@ -307,6 +305,74 @@ describe('API Response', () => {
 
 			assert.deepStrictEqual(headers, {
 				'Set-Cookie': `foo=bar; Expires=${expireDate.toUTCString()}`
+			});
+		});
+	});
+
+	describe('sendError', () => {
+
+		it('Should set statusCode 500 if no error.statusCode is specified', () => {
+
+			const originalError = new Error('Generic error');
+
+			assert.throws(() => ApiResponse.sendError(originalError), e => {
+				const response = JSON.parse(e.message);
+				return response.statusCode === 500;
+			});
+		});
+
+		it('Should set custom statusCode if error.statusCode is specified', () => {
+
+			const originalError = new Error('Generic error');
+			originalError.statusCode = 400;
+
+			assert.throws(() => ApiResponse.sendError(originalError), e => {
+				const response = JSON.parse(e.message);
+				return response.statusCode === 400;
+			});
+		});
+
+		it('Should use the error message as body for default', () => {
+
+			const originalError = new Error('Generic error');
+
+			assert.throws(() => ApiResponse.sendError(originalError), e => {
+				const response = JSON.parse(e.message);
+				return response.body.message === 'Generic error';
+			});
+		});
+
+		it('Should set custom body if error.body is specified', () => {
+
+			const originalError = new Error('Generic error');
+			originalError.body = {
+				custom: true
+			};
+
+			assert.throws(() => ApiResponse.sendError(originalError), e => {
+				const response = JSON.parse(e.message);
+				assert.deepStrictEqual(response.body, {
+					custom: true
+				});
+
+				return true;
+			});
+		});
+
+		it('Should set response headers if error.headers is specified', () => {
+
+			const originalError = new Error('Generic error');
+			originalError.headers = {
+				'x-custom': 'foo'
+			};
+
+			assert.throws(() => ApiResponse.sendError(originalError), e => {
+				const response = JSON.parse(e.message);
+				assert.deepStrictEqual(response.headers, {
+					'x-custom': 'foo'
+				});
+
+				return true;
 			});
 		});
 	});

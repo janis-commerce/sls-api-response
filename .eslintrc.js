@@ -22,6 +22,7 @@ module.exports = {
 		'class-methods-use-this': 0,
 		'consistent-return': 0,
 		'prefer-template': 0,
+		'import/extensions': 0,
 		'import/no-unresolved': 0,
 		'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/tests/**/*.js'] }],
 
