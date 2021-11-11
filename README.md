@@ -67,6 +67,10 @@ ApiResponse.send({
 ApiResponse.sendError(new Error('We have a problem'));
 // Response body: { "message": "We have a problem" }
 
+// Error response for a request with a client
+ApiResponse.sendError(new Error('We have a problem'), 'some-client-code');
+// Response body: { "message": "We have a problem" }
+
 // Error response with custom status code
 const error = new Error('You have a problem');
 error.statusCode = 400;
