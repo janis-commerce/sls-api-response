@@ -1,6 +1,6 @@
 {
   "name": "@janiscommerce/sls-api-response",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A package to handle Serverless API Responses",
   "main": "lib/index.js",
   "scripts": {
