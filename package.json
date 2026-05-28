@@ -5,11 +5,11 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "export TEST_ENV=true; mocha --exit -R nyan --recursive tests/ --require tests/resources/bootstrap",
-    "test-ci": "nyc --reporter=lcov --reporter=text-summary mocha --exit --recursive tests/ --require tests/resources/bootstrap",
     "watch-test": "export TEST_ENV=true; mocha --exit -R nyan -w --recursive tests/ --require tests/resources/bootstrap",
     "coverage": "nyc npm test",
     "lint": "eslint lib/ tests/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "coverage-ci": "nyc --reporter=lcov --reporter=text-summary mocha --exit --recursive tests/ --require tests/resources/bootstrap"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/janis-commerce/sls-api-response#readme",
   "devDependencies": {
     "eslint": "^8.2.0",
-    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.3",
     "husky": "^7.0.4",
     "mocha": "^9.1.3",
@@ -34,5 +34,8 @@
   },
   "dependencies": {
     "lllog": "^1.1.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
